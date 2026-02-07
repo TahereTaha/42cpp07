@@ -2,6 +2,7 @@
 
 # include <string>
 # include <iostream>
+# include <exception>
 
 template <typename T>
 class Array
@@ -46,10 +47,22 @@ class Array
 			}
 			return (*this);
 		}
+
+		T	& operator [] (int idx)
+		{
+			if (idx < 0 || idx >= this->_size)
+				throw (std::out_of_range("out of range."));
+			return (this->_data[idx]);
+		}
 		
+		unsigned int size(void) const
+		{
+			return (this->_size);
+		}
+
 		Array(unsigned int n)
 		{
-			std::cout << "Array custom constructor." << std::cout;
+			std::cout << "Array custom constructor." << std::endl;
 			this->_size = n;
 			this->_data = new T[this->_size];
 			size_t	i = 0;
