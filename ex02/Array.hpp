@@ -50,7 +50,7 @@ class Array
 
 		T	& operator [] (int idx)
 		{
-			if (idx < 0 || idx >= this->_size)
+			if (idx < 0 || static_cast<unsigned int>(idx) >= this->_size)
 				throw (std::out_of_range("out of range."));
 			return (this->_data[idx]);
 		}
